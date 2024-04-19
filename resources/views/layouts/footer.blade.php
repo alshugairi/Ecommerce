@@ -9,15 +9,17 @@
 </footer>
 </div>
 <!-- ./wrapper -->
+<form action="" method="post" id="deleteForm" style="display: none">
+    @csrf
+    @method('delete')
+</form>
 
 <!-- jQuery -->
 <script src="{{ asset('assets/admin') }}/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('assets/admin') }}/plugins/chart.js/Chart.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="{{ asset('assets/admin') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script src="{{ asset('assets/admin') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('assets/admin') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -28,27 +30,18 @@
 <script src="{{ asset('assets/admin') }}/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('assets/admin') }}/js/demo.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
     var dataTable;
     $(function() {
-        $(document).on('click','.confirm-delete', function () {
+        $(document).on('click', '.confirm-delete', function() {
             var deleteUrl = $(this).attr('data-url');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You won\'t be able to revert this!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $('#deleteForm').attr('action', deleteUrl);
-                    $('#deleteForm').submit();
-                }
-            });
+            if (confirm('Are you sure?')) {
+                $('#deleteForm').attr('action', deleteUrl);
+                $('#deleteForm').submit();
+            }
         });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
