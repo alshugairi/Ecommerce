@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
-use Illuminate\Support\{Facades\Auth, ServiceProvider, Facades\Cache};
-use App\{Helpers\BladeHelper, Helpers\TemplateHelper\DesignHelper, Services\Administration\LanguageService};
+use Illuminate\Support\{ServiceProvider, Facades\Cache};
+use App\{Helpers\TemplateHelper\DesignHelper, Services\Administration\LanguageService};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +26,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('direction', DesignHelper::getDirection());
             $view->with('designHelper', DesignHelper::class);
             $view->with('carbon', Carbon::class);
-            $view->with('bladeHelper', BladeHelper::class);
-            $view->with('currentUser', Auth::user());
             //$view->with('role', Auth::user()?->getRoleNames()->first());
 
             $appLanguages = Cache::remember('appLanguages', 3600, function () {

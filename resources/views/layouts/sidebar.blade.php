@@ -26,9 +26,9 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link {{ $designHelper::isMenuActive(['home'])}}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ $designHelper::isMenuActive(['dashboard'])}}">
                         <i class="nav-icon fas fa-home"></i>
-                        <p>{{ __('share.home') }}</p>
+                        <p>{{ __('share.dashboard') }}</p>
                     </a>
                 </li>
                 @canany(['category.view'])

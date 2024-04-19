@@ -1,5 +1,6 @@
 <?php
 use App\{Http\Controllers\HomeController,
+    Http\Controllers\DashboardController,
     Http\Controllers\CategoryController,
     Http\Controllers\ProductController,
     Http\Controllers\Administration\SystemController,
@@ -7,10 +8,8 @@ use App\{Http\Controllers\HomeController,
     Routes\ProfileRoutes,
     Routes\AdministrationRoutes};
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes(options: [
     'login' => true,
@@ -20,18 +19,19 @@ Auth::routes(options: [
     'register' => false,
     'verify' => false,
 ]);
+Route::get(uri: '/', action: [HomeController::class, 'index'])->name(name: 'home');
 
-Route::get(uri: '/', action: static fn() => redirect(to: 'login'));
 Route::group(attributes: [
     'middleware' => [
         'auth',
         //'hasPermission'
     ]
 ], routes: static function () {
-    Route::get(uri: '/home', action: [HomeController::class, 'index'])->name(name: 'home');
     ProfileRoutes::registerRoutes();
     AccountRoutes::registerRoutes();
     AdministrationRoutes::registerRoutes();
+
+    Route::get(uri: '/dashboard', action: [DashboardController::class, 'index'])->name(name: 'dashboard');
 
     Route::get(uri: '/categories/list', action: [CategoryController::class, 'list'])->name(name: 'categories.list');
     Route::resource(name: 'categories', controller: CategoryController::class);

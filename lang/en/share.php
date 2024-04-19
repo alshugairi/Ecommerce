@@ -63,4 +63,7 @@ return [
     'product' => 'Product',
     'from' => 'From',
     'to' => 'To',
+    'read_more' => 'Read more',
+    'dashboard' => 'Dashboard',
+    'copyright' => 'Copyright',
 ];

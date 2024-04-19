@@ -15,7 +15,8 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        $products = Product::paginate();
-        return view('home');
+        app()->setLocale(session('locale', 'ar'));
+        $products = Product::paginate(16);
+        return view('home', get_defined_vars());
     }
 }
