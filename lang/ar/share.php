@@ -67,5 +67,6 @@ return [
     'dashboard' => 'لوحة التحكم',
     'copyright' => 'حقوق النشر',
     'print' => 'طباعة',
-    'welcome' => 'مرحبا'
+    'welcome' => 'مرحبا',
+    'delete_all' => 'حذف الكل',
 ];

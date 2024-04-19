@@ -30,4 +30,27 @@ class ProductService extends Services
             ->editColumn('category', function ($item){ return $item->category?->name; })
             ->toJson();
     }
+
+    /**
+     * @param array $ids
+     * @param string $action
+     * @return void
+     */
+    public function handleBulkActions(array $ids, string $action): void
+    {
+        match ($action) {
+            'delete' => $this->handleBulkDelete($ids),
+            default => '',
+        };
+    }
+
+
+    /**
+     * @param array $ids
+     * @return void
+     */
+    private function handleBulkDelete(array $ids): void
+    {
+        $this->repository->getModel()->whereIn('id', $ids)->delete();
+    }
 }

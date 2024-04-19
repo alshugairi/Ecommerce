@@ -67,5 +67,6 @@ return [
     'dashboard' => 'Dashboard',
     'copyright' => 'Copyright',
     'print' => 'Print',
-    'welcome' => 'Welcome'
+    'welcome' => 'Welcome',
+    'delete_all' => 'Delete All',
 ];

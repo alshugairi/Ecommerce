@@ -3,7 +3,7 @@
         class="dt-button btn btn-sm btn-outline-primary waves-effect waves-light dropdown-toggle"
         type="button"
         id="budgetId"
-        data-bs-toggle="dropdown"
+        data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false">
         {{ __('share.actions') }}

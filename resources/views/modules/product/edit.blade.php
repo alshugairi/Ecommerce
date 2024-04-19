@@ -31,9 +31,9 @@
                     @endforeach
                 </x-layouts.language-tabs>
                 <div class="row">
-                    <x-form.input type="text" name="price" key="id-price" label="true" value="{{ $product->price }}" labelName="{{ __('modules/product.price') }}"/>
-                    <x-form.input type="text" name="quantity" key="id-quantity" label="true" value="{{ $product->quantity }}" labelName="{{ __('modules/product.quantity') }}"/>
-                    <x-form.select label="true" key="input-category_id" name="category_id" value="{{ $product->category_id }}" :elements="$categories" labelName="{{ trans('modules/product.category') }}"/>
+                    <x-form.input type="text" name="price" key="id-price" label="true" required="true" value="{{ $product->price }}" labelName="{{ __('modules/product.price') }}"/>
+                    <x-form.input type="text" name="quantity" key="id-quantity" label="true" required="true" value="{{ $product->quantity }}" labelName="{{ __('modules/product.quantity') }}"/>
+                    <x-form.select label="true" key="input-category_id" required="true" name="category_id" value="{{ $product->category_id }}" :elements="$categories" labelName="{{ trans('modules/product.category') }}"/>
                     <x-form.input type="file" name="image" key="input-image" label="true" labelName="{{ __('modules/product.image') }}"/>
                     <div class="clearfix"></div>
                     <div class="col-6">

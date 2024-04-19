@@ -5,6 +5,12 @@
             <h4 class="">{{ __('share.products') }}</h4>
         </div>
         <div class="col-md-8 text-right">
+            <x-datatable.bulk-action>
+                <a class="dropdown-item bulk-action-btn" data-action="delete"
+                   data-url="{{ route('products.bulk_actions') }}" href="javascript:void(0);">
+                    {{ __('share.delete_all') }}
+                </a>
+            </x-datatable.bulk-action>
             <a class="btn btn-sm btn-dark btn-print">
                 <i class="fa-solid fa-print"></i>
                 <span class="d-md-inline-block d-none">
@@ -17,7 +23,7 @@
                         <x-form.input type="text" name="name" key="filter-name" label="true" labelName="{{ __('modules/product.name') }}"/>
                         <x-form.input type="number" name="price" key="filter-price" label="true" labelName="{{ __('modules/product.price') }}"/>
                         <x-form.input type="date" name="from" key="filter-from" label="true" labelName="{{ __('share.from') }}"/>
-                        <x-form.input type="to" name="from" key="filter-to" label="true" labelName="{{ __('share.to') }}"/>
+                        <x-form.input type="date" name="to" key="filter-to" label="true" labelName="{{ __('share.to') }}"/>
                     </div>
                 </x-slot>
             </x-datatable.filter>
@@ -35,6 +41,7 @@
                     <thead>
                     <tr>
                         <th></th>
+                        <th><input type="checkbox" id="check-all" style="margin-left: -8px;"></th>
                         <th>{{ __('modules/product.name') }}</th>
                         <th>{{ __('modules/product.price') }}</th>
                         <th>{{ __('modules/product.quantity') }}</th>
@@ -70,6 +77,15 @@
                 },
                 columns: [
                     { data: 'id', name: 'id',visible: false},
+                    {
+                        data: 'id',
+                        name: 'id',
+                        orderable: false,
+                        searchable: false,
+                        render: function(data, type, full, meta) {
+                            return '<input type="checkbox" class="check-item" value="' + data + '">';
+                        }
+                    },
                     { data: 'name', name: 'name' },
                     { data: 'price', name: 'price' },
                     { data: 'quantity', name: 'quantity' },

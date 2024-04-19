@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\{Http\Requests\ProductRequest,
     Models\Category,
     Models\Product,
+    Packages\Emerald\HttpFoundation\Response,
     Pipelines\ProductFilterPipeline,
     Services\ProductService};
 use Exception;
@@ -101,5 +102,17 @@ class ProductController extends Controller
     {
         $products = $this->service->getAll([ new ProductFilterPipeline(request: $request)]);
         return view('modules.product.print', get_defined_vars());
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function bulkActions(Request $request): Response
+    {
+        $this->service->handleBulkActions(ids: $request->ids, action: $request->action);
+        return Response::response(
+            message: $request->action,
+        );
     }
 }

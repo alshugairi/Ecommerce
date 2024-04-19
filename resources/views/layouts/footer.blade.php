@@ -19,13 +19,8 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/admin') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-<script src="{{ asset('assets/admin') }}/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ asset('assets/admin') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('assets/admin') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ asset('assets/admin') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="{{ asset('assets/admin') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/admin') }}/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -51,6 +46,45 @@
             e.preventDefault();
             dataTable.ajax.reload();
         });
+
+        $('#check-all').click(function() {
+            var rows = dataTable.rows({ 'search': 'applied' }).nodes();
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+        });
+        $('.bulk-action-btn').click(function() {
+            handleBulkAction($(this).data('url'), $(this).data('action'));
+        });
+        function handleBulkAction(bulkUrl, action) {
+            var selectedIds = [];
+            $('.check-item:checked').each(function() {
+                selectedIds.push($(this).val());
+            });
+
+            console.log('Selected IDs:', selectedIds);
+
+            if (selectedIds.length === 0) {
+                alert("{{ __('share.select_at_least_one_row') }}");
+                return;
+            }
+            if (confirm('Are you sure you want to perform this action?')) {
+                $.ajax({
+                    url: bulkUrl,
+                    method: 'POST',
+                    data: {
+                        ids: selectedIds,
+                        action: action
+                    },
+                    success: function(response) {
+                        dataTable.ajax.reload();
+                        alert('Action successfully executed');
+                    },
+                    error: function(error) {
+                        console.error('Error during action:', error);
+                        alert('Error performing the action');
+                    }
+                });
+            }
+        }
     });
 </script>
 @stack('js')

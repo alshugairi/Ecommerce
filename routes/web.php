@@ -36,6 +36,7 @@ Route::group(attributes: [
     Route::get(uri: '/categories/list', action: [CategoryController::class, 'list'])->name(name: 'categories.list');
     Route::resource(name: 'categories', controller: CategoryController::class);
 
+    Route::post(uri: '/products/bulk-actions', action: [ProductController::class, 'bulkActions'])->name(name: 'products.bulk_actions');
     Route::get(uri: '/products/print', action: [ProductController::class, 'print'])->name(name: 'products.print');
     Route::get(uri: '/products/list', action: [ProductController::class, 'list'])->name(name: 'products.list');
     Route::resource(name: 'products', controller: ProductController::class);
