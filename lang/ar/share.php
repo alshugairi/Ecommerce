@@ -67,4 +67,5 @@ return [
     'dashboard' => 'لوحة التحكم',
     'copyright' => 'حقوق النشر',
     'print' => 'طباعة',
+    'welcome' => 'مرحبا'
 ];

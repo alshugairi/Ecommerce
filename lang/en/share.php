@@ -67,4 +67,5 @@ return [
     'dashboard' => 'Dashboard',
     'copyright' => 'Copyright',
     'print' => 'Print',
+    'welcome' => 'Welcome'
 ];

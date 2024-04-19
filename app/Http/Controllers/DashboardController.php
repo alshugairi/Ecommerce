@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Language;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
@@ -13,6 +16,10 @@ class DashboardController extends Controller
      */
     public function index(): View
     {
-        return view('modules.dashboard.index');
+        $productsCount = Product::count();
+        $usersCount = User::count();
+        $categoriesCount = Category::count();
+        $languagesCount = Language::count();
+        return view('modules.dashboard.index', get_defined_vars());
     }
 }
