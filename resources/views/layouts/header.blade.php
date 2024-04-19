@@ -27,6 +27,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/admin') }}/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('assets/admin') }}/css/custom.css">
+    @if(session('locale') === 'ar')
+        <link href="{{ asset('assets/admin') }}/css/rtl.css" rel="stylesheet" />
+    @endif
 
 </head>
 <body class="hold-transition sidebar-mini">

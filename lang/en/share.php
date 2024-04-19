@@ -66,4 +66,5 @@ return [
     'read_more' => 'Read more',
     'dashboard' => 'Dashboard',
     'copyright' => 'Copyright',
+    'print' => 'Print',
 ];

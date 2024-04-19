@@ -92,4 +92,14 @@ class ProductController extends Controller
             new ProductFilterPipeline(request: $request)
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return View
+     */
+    public function print(Request $request): View
+    {
+        $products = $this->service->getAll([ new ProductFilterPipeline(request: $request)]);
+        return view('modules.product.print', get_defined_vars());
+    }
 }

@@ -5,6 +5,12 @@
             <h4 class="">{{ __('share.products') }}</h4>
         </div>
         <div class="col-md-8 text-right">
+            <a class="btn btn-sm btn-dark btn-print">
+                <i class="fa-solid fa-print"></i>
+                <span class="d-md-inline-block d-none">
+                        {{ __('share.print') }}
+                    </span>
+            </a>
             <x-datatable.filter>
                 <x-slot name="form">
                     <div class="row">
@@ -95,6 +101,15 @@
                     }
                     @endcanany
                 ]
+            });
+
+            $('.btn-print').click(function() {
+                var href = "{{route('products.print') }}";
+                href += '?name=' + $('#filterForm #filter-name').val();
+                href += "&price=" + $('#filterForm #filter-price').val();
+                href += "&from=" + $('#filterForm #filter-from').val();
+                href += "&to=" + $('#filterForm #filter-to').val();
+                location.href = href;
             });
         });
     </script>

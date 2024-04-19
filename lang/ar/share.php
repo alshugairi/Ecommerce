@@ -66,4 +66,5 @@ return [
     'read_more' => 'اقرأ المزيد',
     'dashboard' => 'لوحة التحكم',
     'copyright' => 'حقوق النشر',
+    'print' => 'طباعة',
 ];

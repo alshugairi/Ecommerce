@@ -80,10 +80,12 @@ abstract class Services implements ServiceContract
     }
 
     /**
+     * @param array $filters
      * @return mixed
      */
-    public function getAll(): mixed
+    public function getAll(array $filters = []): mixed
     {
-        return $this->repository->get();
+        $model = $this->repository->getModel()->newQuery();
+        return app(Pipeline::class)->send($model)->through($filters)->thenReturn()->get();
     }
 }

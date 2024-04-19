@@ -2,6 +2,7 @@
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="fa-solid fa-language"></i>
+        {{ session('locale') }}
     </a>
     <ul class="dropdown-menu dropdown-menu-right">
         <li>
