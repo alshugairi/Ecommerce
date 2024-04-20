@@ -80,9 +80,10 @@ class RoleService extends Services
     }
 
     /**
+     * @param array $filters
      * @return array
      */
-    public function getAll(): array
+    public function getAll(array $filters = []): array
     {
         $roles = $this->repository->get();
 
